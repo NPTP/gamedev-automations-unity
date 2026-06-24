@@ -11,10 +11,9 @@ namespace NPTP.GamedevAutomationsUnityHelper
     {
         private const int SUCCESS_CODE = 0;
         private const int FAILURE_CODE = 1;
-        private const string BUILD_CONFIG_CLI_ARGUMENT = "build_config";
-        private const string COMPRESSION_METHOD_DEFAULT = "Default";
-        private const string COMPRESSION_METHOD_LZ4 = "LZ4";
-        private const string COMPRESSION_METHOD_LZ4HC = "LZ4HC";
+        private const string COMPRESSION_METHOD_DEFAULT = "default";
+        private const string COMPRESSION_METHOD_LZ4 = "lz4";
+        private const string COMPRESSION_METHOD_LZ4HC = "lz4hc";
 
         /// <summary>
         /// Used by automation build tool, called from the CLI - not meant to be called by other C# project code.
@@ -23,7 +22,7 @@ namespace NPTP.GamedevAutomationsUnityHelper
         {
             try
             {
-                ExternalBuildConfig buildConfig = Utilities.ParseJsonFromCommandLine<ExternalBuildConfig>(BUILD_CONFIG_CLI_ARGUMENT);
+                ExternalBuildConfig buildConfig = ExternalBuildConfig.FromCommandLine();
                 
                 Debug.Log($"{nameof(ExternalBuildConfig)} parsed from command line JSON : {buildConfig.ToString()}");
                 
@@ -33,7 +32,7 @@ namespace NPTP.GamedevAutomationsUnityHelper
                 if (buildConfig.DeepProfilingSupport) buildOptions |= BuildOptions.EnableDeepProfilingSupport;
                 if (buildConfig.ScriptDebugging) buildOptions |= BuildOptions.AllowDebugging;
                 
-                switch (buildConfig.CompressionMethod)
+                switch (buildConfig.CompressionMethod.ToLower())
                 {
                     case COMPRESSION_METHOD_DEFAULT:
                         break;
