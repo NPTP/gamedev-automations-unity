@@ -17,18 +17,18 @@ namespace NPTP.GamedevAutomationsUnityHelper
         public static bool HasCLIArg(string argName)
         {
             string[] args = Environment.GetCommandLineArgs();
-            int index = Array.IndexOf(args, argName);
-            return index >= 0 && index < args.Length - 1;
+            int index = Array.IndexOf(args, $"-{argName}");
+            return index >= 0 && index < args.Length;
         }
 
         public static bool TryGetCLIArgValue(string argName, out string value)
         {
             string[] args = Environment.GetCommandLineArgs();
-            int index = Array.IndexOf(args, argName);
+            int index = Array.IndexOf(args, $"-{argName}");
             value = index >= 0 && index < args.Length - 1
                 ? args[index + 1]
                 : null;
-            
+
             return value != null;
         }
     }

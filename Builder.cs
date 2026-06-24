@@ -24,7 +24,7 @@ namespace NPTP.GamedevAutomationsUnityHelper
             {
                 ExternalBuildConfig buildConfig = ExternalBuildConfig.FromCommandLine();
                 
-                Debug.Log($"{nameof(ExternalBuildConfig)} parsed from command line JSON : {buildConfig.ToString()}");
+                Debug.Log($"{nameof(ExternalBuildConfig)} parsed from command line : {buildConfig.ToString()}");
                 
                 BuildOptions buildOptions = 0;
                 if (buildConfig.DevelopmentBuild) buildOptions |= BuildOptions.Development;
@@ -43,7 +43,7 @@ namespace NPTP.GamedevAutomationsUnityHelper
                         buildOptions |= BuildOptions.CompressWithLz4HC;
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        break;
                 }
                 
                 BuildTarget buildTarget = (BuildTarget)Enum.Parse(typeof(BuildTarget), buildConfig.BuildTarget);
