@@ -5,11 +5,10 @@
 
 using System;
 using System.Text;
-using UnityEngine;
 
 namespace NPTP.GamedevAutomationsUnityHelper
 {
-    internal struct ExternalBuildConfig
+    internal struct BuildConfig
     {
         // These private field names have to match the argument names passed in by the Python build tool.
         private bool unity_development_build;
@@ -30,9 +29,9 @@ namespace NPTP.GamedevAutomationsUnityHelper
         public string CompressionMethod => unity_compression_method;
         public string[] ScriptingDefines => unity_scripting_defines;
 
-        public static ExternalBuildConfig FromCommandLine()
+        public static BuildConfig FromCommandLine()
         {
-            ExternalBuildConfig config = new ExternalBuildConfig();
+            BuildConfig config = new BuildConfig();
             string value;
 
             config.unity_auto_connect_profiler = Utilities.HasCLIArg(nameof(unity_auto_connect_profiler));

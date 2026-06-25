@@ -22,9 +22,10 @@ namespace NPTP.GamedevAutomationsUnityHelper
         {
             try
             {
-                ExternalBuildConfig buildConfig = ExternalBuildConfig.FromCommandLine();
+                BuildConfig buildConfig = BuildConfig.FromCommandLine();
                 
-                Debug.Log($"{nameof(ExternalBuildConfig)} parsed from command line : {buildConfig.ToString()}");
+                // TODO: Remove this log
+                Debug.Log($"{nameof(BuildConfig)} parsed from command line : {buildConfig.ToString()}");
                 
                 BuildOptions buildOptions = 0;
                 if (buildConfig.DevelopmentBuild) buildOptions |= BuildOptions.Development;
@@ -41,8 +42,6 @@ namespace NPTP.GamedevAutomationsUnityHelper
                         break;
                     case COMPRESSION_METHOD_LZ4HC:
                         buildOptions |= BuildOptions.CompressWithLz4HC;
-                        break;
-                    default:
                         break;
                 }
                 
