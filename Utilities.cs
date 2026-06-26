@@ -69,7 +69,7 @@ namespace NPTP.GamedevAutomationsUnity
                 }
             }
 
-            sb.Append('[');
+            sb.Append(']');
             return sb.ToString();
         }
     }
