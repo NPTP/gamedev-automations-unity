@@ -4,6 +4,7 @@
 // ReSharper disable ConvertToAutoProperty
 
 using System;
+using System.Linq;
 using System.Text;
 
 namespace NPTP.GamedevAutomationsUnity
@@ -41,7 +42,9 @@ namespace NPTP.GamedevAutomationsUnity
             config.unity_build_executable_output_path = Utilities.TryGetCLIArgValue(nameof(unity_build_executable_output_path), out value) ? value : string.Empty;
             config.unity_build_target = Utilities.TryGetCLIArgValue(nameof(unity_build_target), out value) ? value : string.Empty;
             config.unity_compression_method = Utilities.TryGetCLIArgValue(nameof(unity_compression_method), out value) ? value : string.Empty;
-            config.unity_scripting_defines = Utilities.TryGetCLIArgValue(nameof(unity_scripting_defines), out value) ? value.Split(';') : Array.Empty<string>();
+            config.unity_scripting_defines = Utilities.TryGetCLIArgValue(nameof(unity_scripting_defines), out value)
+                ? value.Split(';').Where(s => !string.IsNullOrWhiteSpace(s)).ToArray()
+                : Array.Empty<string>();
             
             return config;
         }
