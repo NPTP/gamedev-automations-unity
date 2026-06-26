@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build.Reporting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -60,8 +61,8 @@ namespace NPTP.GamedevAutomationsUnity
                     extraScriptingDefines = buildConfig.ScriptingDefines
                 };
                 
-                BuildPipeline.BuildPlayer(buildPlayerOptions);
-                EditorApplication.Exit(SUCCESS_CODE);
+                BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
+                EditorApplication.Exit(buildReport.summary.result == BuildResult.Succeeded ? SUCCESS_CODE : FAILURE_CODE);
             }
             catch (Exception e)
             {
