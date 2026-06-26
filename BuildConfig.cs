@@ -1,4 +1,5 @@
-﻿// ReSharper disable InconsistentNaming
+﻿#if UNITY_EDITOR
+// ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedField.Global
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable ConvertToAutoProperty
@@ -63,3 +64,4 @@ namespace NPTP.GamedevAutomationsUnity
         }
     }
 }
+#endif
