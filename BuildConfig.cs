@@ -33,12 +33,13 @@ namespace NPTP.GamedevAutomationsUnity
         public static BuildConfig FromCommandLine()
         {
             BuildConfig config = new BuildConfig();
-            string value;
             
             config.unity_auto_connect_profiler = Utilities.HasCLIArg(nameof(unity_auto_connect_profiler));
             config.unity_deep_profiling_support = Utilities.HasCLIArg(nameof(unity_deep_profiling_support));
             config.unity_script_debugging = Utilities.HasCLIArg(nameof(unity_script_debugging));
             config.unity_development_build = Utilities.HasCLIArg(nameof(unity_development_build));
+            
+            string value;
             config.unity_build_executable_output_path = Utilities.TryGetCLIArgValue(nameof(unity_build_executable_output_path), out value) ? value : string.Empty;
             config.unity_build_target = Utilities.TryGetCLIArgValue(nameof(unity_build_target), out value) ? value : string.Empty;
             config.unity_compression_method = Utilities.TryGetCLIArgValue(nameof(unity_compression_method), out value) ? value : string.Empty;
